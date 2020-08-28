@@ -5,6 +5,7 @@ import { setTransitionName, setPageTitle, cancelRequest } from 'thinkive-hvue'
 //可以根据菜单栏目 把页面路由分组到各栏目模块中，再引入来扩展
 Vue.use(Router)
 import Index from '@/views/index.vue' // 首页
+import Tag from '@/views/tag.vue'
 import Page404 from '@/views/page404.vue' // 404 错误页
 
 /*
@@ -33,6 +34,11 @@ const router = new Router({
         {
             path: '/',
             redirect: 'index',
+        },
+        {
+            path: '/tag',
+            name: 'tag',
+            component: Tag
         },
         {
             path: '*',

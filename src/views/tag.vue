@@ -4,21 +4,20 @@
         <header class="header">
             <div class="header_inner">
                 <a @click="pageBack()" class="icon_back" href="javascript:;"></a>
-                首页
+                
             </div>
         </header>
         <article class="content">
-            
+            <canvas id="my_canvas" width="480" height="340"></canvas>
         </article>
-        <Footer :idx="1" ></Footer>
+        <Footer :idx="2" ></Footer>
     </section>
 </template>
 
 <script>
 import {wordcount} from '@/service/mobileService'
-import common from '@/util/common'
 import Footer from '@/components/Footer'
-import { getSession, setSession, clearSession, getUuid, getUrlParams } from 'thinkive-hvue'
+import WordCloud from 'wordcloud'
 
 
 export default {
@@ -38,6 +37,19 @@ export default {
 
     },
     mounted(){
+        wordcount({dist: 'game'}).then(data => {
+            console.debug("data", data)
+            if (data.err == '0') {
+                var array = [];
+                data.data.forEach(item => {
+                    var i = [];
+                    i.push(item.word)
+                    i.push(item.count)
+                    array.push(i)
+                })
+                WordCloud(document.getElementById('my_canvas'), { list: array } );
+            }
+        })
         
     },
     methods: {
@@ -54,17 +66,5 @@ export default {
 </script>
 
 <style>
-.captcha-box {
-    padding-right: 0 !important;
-}
 
-.captcha-input {
-    display: inline !important;
-    width: 50% !important;
-}
-
-.captcha-img {
-    min-width: 100px;
-    width: 45%;
-}
 </style>
