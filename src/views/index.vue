@@ -1,14 +1,18 @@
 <template>
 
     <section class="main fixed">
-        <header class="header">
-            <div class="header_inner">
-                <a @click="pageBack()" class="icon_back" href="javascript:;"></a>
-                首页
+        <header>
+            <div class="header-inner">
+                <h1>游戏话题</h1>
             </div>
         </header>
-        <article class="content">
-            
+        <article class="content mt5">
+            <h-cell-group>
+                <h-cell-item v-for="item in list" type="link" :href="'/word/' + item.word" :key="item.word" arrow>
+                    <span slot="left">{{item.word}}</span>
+                    <span slot="right">{{item.count}}</span>
+                </h-cell-item>
+            </h-cell-group>
         </article>
         <Footer :idx="1" ></Footer>
     </section>
@@ -24,18 +28,25 @@ import { getSession, setSession, clearSession, getUuid, getUrlParams } from 'thi
 export default {
     data () {
         return {
-            
+            list: [
+                
+            ]
         }
     },
     components: {
-        Footer
+        Footer,
     },
     beforeCreate() {
         console.log('index beforeCreate invoke!')
         
     },
     created(){
-
+        wordcount({dist: 'game'}).then(data => {
+            console.debug("data", data)
+            if (data.err == '0') {
+                this.list = data.data
+            }
+        })
     },
     mounted(){
         

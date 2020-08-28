@@ -85,7 +85,7 @@ _config.dev = {
     },
     //webpack环境变量
     webpackEnv: {
-        SERVER_URL: process.env.npm_config_server ? JSON.stringify('/api') : JSON.stringify('/api'),
+        SERVER_URL: process.env.npm_config_server ? JSON.stringify('/api/') : JSON.stringify('/api/'),
         WEBSOCKETBASHPATH: JSON.stringify('./public/websocket/'),
     }
 }
@@ -106,7 +106,7 @@ _config.build = {
     delConsoleLog: true,
     //webpack环境变量
     webpackEnv: {
-        SERVER_URL: JSON.stringify('http://wx.stocke.com.cn:8092/servlet/json'),
+        SERVER_URL: JSON.stringify('/'),
     }
 }
 

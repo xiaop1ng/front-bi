@@ -1,13 +1,11 @@
 <template>
-
     <section class="main fixed">
-        <header class="header">
-            <div class="header_inner">
-                <a @click="pageBack()" class="icon_back" href="javascript:;"></a>
-                
+        <header>
+            <div class="header-inner">
+                <h1>标签</h1>
             </div>
         </header>
-        <article class="content">
+        <article class="content mt8">
             <canvas id="my_canvas" width="480" height="340"></canvas>
         </article>
         <Footer :idx="2" ></Footer>

@@ -6,6 +6,7 @@ import { setTransitionName, setPageTitle, cancelRequest } from 'thinkive-hvue'
 Vue.use(Router)
 import Index from '@/views/index.vue' // 首页
 import Tag from '@/views/tag.vue'
+import Word from '@/views/word.vue'
 import Page404 from '@/views/page404.vue' // 404 错误页
 
 /*
@@ -41,6 +42,11 @@ const router = new Router({
             component: Tag
         },
         {
+            path: '/word/:key',
+            name: 'word',
+            component: Word
+        },
+        {
             path: '*',
             name: 'page404', // 404 页面
             component: Page404
@@ -50,14 +56,20 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     //页面切换动画
-    
-    //cancelRequest();
-    if ( to.name == 'index' && from.name == 'result') {
-        // 去往首页，设置动画
-        router.app.$store.commit("router/updateDirection","right")
+    if (from.name == 'tag' || from.name == 'index' || from.name == 'rank') {
+        router.app.$store.commit("router/updateDirection", "")
     } else {
         setTransitionName();
     }
+        
+    //cancelRequest();
+    // if ( to.name == 'index' && from.name == 'result') {
+    //     // 去往首页，设置动画
+    //     router.app.$store.commit("router/updateDirection","right")
+    // } else {
+    //     setTransitionName();
+    // }
+    
     next();
 });
 

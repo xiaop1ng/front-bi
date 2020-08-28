@@ -25,11 +25,11 @@ export default {
                     name: '标签云',
                     target: '/tag'
                 },
-                {
-                    index: 3,
-                    name: '列表',
-                    target: '/list'
-                }
+                // {
+                //     index: 3,
+                //     name: '排行',
+                //     target: '/rank'
+                // }
             ],
         }
     },
