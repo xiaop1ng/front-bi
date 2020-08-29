@@ -13,7 +13,7 @@ import './assets/css/common.css'
 import './assets/css/style.css'
 import 'thinkive-hui/lib/theme-default/hui.css'
 
-import { Toast, Loading, Alert, Confirm, DateTime, ListTheme, ListItem, ListOther, CellItem, CellGroup } from 'thinkive-hui';
+import { Toast, Loading, Alert, Confirm, DateTime, ListTheme, ListItem, ListOther, CellItem, CellGroup, ActionSheet } from 'thinkive-hui';
 
 
 window._hvueToast = Toast;
@@ -29,7 +29,7 @@ Vue.prototype.$pageBack = function() {
 Vue.prototype.$tip = function(txt) {
     this.$alert({mes: txt});
 }
-Vue.use(DateTime).use(ListTheme).use(ListItem).use(ListOther).use(CellItem).use(CellGroup)
+Vue.use(DateTime).use(ListTheme).use(ListItem).use(ListOther).use(CellItem).use(CellGroup).use(ActionSheet)
 
 Vue.config.productionTip = false
 

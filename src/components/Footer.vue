@@ -49,7 +49,7 @@ export default {
             if (this.idx == nav.index) return
             if (nav.target) {
                 // 跳转指定页面
-                this.$router.push({
+                this.$router.replace({
                     path: nav.target
                 });
             }

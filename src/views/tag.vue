@@ -21,7 +21,8 @@ import WordCloud from 'wordcloud'
 export default {
     data () {
         return {
-            
+            dist: 'game',
+            shape: ['cloud', 'circle', 'cardioid', 'diamond', 'square', 'triangle-forward', 'triangle', 'triangle-upright', 'pentagon', 'star']
         }
     },
     components: {
@@ -35,7 +36,7 @@ export default {
 
     },
     mounted(){
-        wordcount({dist: 'game'}).then(data => {
+        wordcount({dist: this.dist}).then(data => {
             console.debug("data", data)
             if (data.err == '0') {
                 var array = [];
@@ -45,7 +46,14 @@ export default {
                     i.push(item.count)
                     array.push(i)
                 })
-                WordCloud(document.getElementById('my_canvas'), { list: array } );
+                WordCloud(document.getElementById('my_canvas'), {
+                    list: array,
+                    shape: this.shape[Math.floor((Math.random()*this.shape.length))],
+                    click: item => {
+                        console.debug(item)
+                        this.$router.push('/' + this.dist + /word/ + item[0])
+                    }
+                });
             }
         })
         

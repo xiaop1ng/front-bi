@@ -33,6 +33,11 @@ const router = new Router({
             component: Index
         },
         {
+            path: '/index/:dist',
+            name: 'indexDist',
+            component: Index
+        },
+        {
             path: '/',
             redirect: 'index',
         },
@@ -42,7 +47,7 @@ const router = new Router({
             component: Tag
         },
         {
-            path: '/word/:key',
+            path: '/:dist/word/:key',
             name: 'word',
             component: Word
         },
