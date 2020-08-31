@@ -1,11 +1,7 @@
 <template>
 
     <section class="main fixed">
-        <header>
-            <div class="header-inner">
-                <h1 @click="menuShow = !menuShow">{{title}}<img src="../assets/images/arrow-down.png" style="height: .20rem;"/></h1>
-            </div>
-        </header>
+        <Header v-on:menuChange="changeDist"></Header>
         <article class="content mt5">
             <h-cell-group>
                 <h-cell-item v-for="item in list" type="link" :href="'/'+ dist + '/word/' + item.word" :key="item.word" arrow>
@@ -14,7 +10,7 @@
                 </h-cell-item>
             </h-cell-group>
         </article>
-        <h-actionsheet :actions="menu" v-model="menuShow"></h-actionsheet>
+        
         <Footer :idx="1" ></Footer>
     </section>
 </template>
@@ -23,48 +19,30 @@
 import {wordcount} from '@/service/mobileService'
 import common from '@/util/common'
 import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import { getSession, setSession, clearSession, getUuid, getUrlParams } from 'thinkive-hvue'
 
 
 export default {
     data () {
         return {
-            title: '游戏话题',
             list: [
                 
             ],
-            menu: [{
-                label: '游戏话题',
-                dist: 'game',
-                callback: item => {
-                    this.changeDist(item);
-                }
-            },{
-                label: '实事新闻',
-                dist: 'news',
-                callback: item => {
-                    this.changeDist(item);
-                }
-            }],
-            menuShow: false,
             dist: 'game'
         }
     },
     components: {
         Footer,
+        Header
     },
     beforeCreate() {
         console.log('index beforeCreate invoke!')
         
     },
     created(){
+        console.debug(this.$route.params.dist)
         this.dist = this.$route.params.dist || 'game'
-        this.menu.forEach(T => {
-            if(T.dist == this.dist) {
-                this.title = T.label
-                return false
-            }
-        })
         this.getWordCount(this.dist)
     },
     mounted(){
@@ -79,19 +57,13 @@ export default {
                 }
             })
         },
-        pageBack() {
-            // 退出应用
-            common.exit()
-        },
         inputBlur() {
             // ios
             window.scroll(0,0);
         },
         changeDist(item) {
-            if (item.dist == this.dist) return
+            this.dist=item.dist
             this.getWordCount(item.dist)
-            this.dist = item.dist
-            this.title = item.label
             this.$router.replace('/index/' + item.dist)
         }
     }

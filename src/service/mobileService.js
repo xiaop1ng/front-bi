@@ -49,8 +49,17 @@ export function worddetail (params, options) {
 	}
 	return commonInvoke(_params, params, options, _options)
 }
+export function feel (params, options) {
+	let _params = {}
+	let _options = {
+		url: SERVER_URL + "v2/feel/" + params.dist,
+	}
+	return commonInvoke(_params, params, options, _options)
+}
+
 
 export default {
 	'wordcount': wordcount,
 	'worddetail': worddetail,
+	'feel': feel
 }

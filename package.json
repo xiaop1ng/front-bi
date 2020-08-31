@@ -22,7 +22,8 @@
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1",
     "weixin-js-sdk": "^1.4.0-test",
-    "wordcloud": "^1.1.1"
+    "wordcloud": "^1.1.1",
+    "chart.xkcd": "^1.1.13"
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
