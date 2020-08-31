@@ -29,6 +29,12 @@ export default {
                     this.onChange(item);
                 }
             },{
+                label: '吾爱破解',
+                dist: 'share',
+                callback: item => {
+                    this.onChange(item);
+                }
+            },{
                 label: 'v2ex',
                 dist: 'explore',
                 callback: item => {
