@@ -48,7 +48,7 @@ export default {
                     const pieChart = new chartXkcd.Pie(svg, {
                         title: "today's mood", // optional
                         data: {
-                            labels: ['负向：' + data.data.negative, '中性：' + data.data.normal, '正向：' + data.data.positive],
+                            labels: ['😭：' + data.data.negative, '😐：' + data.data.normal, '😃：' + data.data.positive],
                             datasets: [{
                                 data: [data.data.negative, data.data.normal, data.data.positive],
                             }],

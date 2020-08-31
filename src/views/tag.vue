@@ -51,6 +51,13 @@ export default {
                         var i = [];
                         i.push(item.word)
                         let factor = data.data.length < 20 ? 10 : 3
+                        if (data.data.length > 150) {
+                            factor = 1
+                        } else if (data.data.length < 20) {
+                            factor = 10
+                        } else {
+                            factor = 3
+                        }
                         i.push(item.count * factor)
                         array.push(i)
                     })
